@@ -66,18 +66,18 @@ jobs:
             push: true
             tags: |
               snowdreamtech/java:latest
-              snowdreamtech/java:11.0.24
-              snowdreamtech/java:11.0
-              snowdreamtech/java:11
+              snowdreamtech/java:17.0.12
+              snowdreamtech/java:17.0
+              snowdreamtech/java:17
               ghcr.io/snowdreamtech/java:latest
-              ghcr.io/snowdreamtech/java:11.0.24
-              ghcr.io/snowdreamtech/java:11.0
-              ghcr.io/snowdreamtech/java:11
+              ghcr.io/snowdreamtech/java:17.0.12
+              ghcr.io/snowdreamtech/java:17.0
+              ghcr.io/snowdreamtech/java:17
               snowdreamtech/openjdk:latest
-              snowdreamtech/openjdk:11.0.24
-              snowdreamtech/openjdk:11.0
-              snowdreamtech/openjdk:11
+              snowdreamtech/openjdk:17.0.12
+              snowdreamtech/openjdk:17.0
+              snowdreamtech/openjdk:17
               ghcr.io/snowdreamtech/openjdk:latest
-              ghcr.io/snowdreamtech/openjdk:11.0.24
-              ghcr.io/snowdreamtech/openjdk:11.0
-              ghcr.io/snowdreamtech/openjdk:11            
+              ghcr.io/snowdreamtech/openjdk:17.0.12
+              ghcr.io/snowdreamtech/openjdk:17.0
+              ghcr.io/snowdreamtech/openjdk:17            
