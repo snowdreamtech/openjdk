@@ -62,22 +62,22 @@ jobs:
               http_proxy=${{ env.http_proxy }}
               https_proxy=${{ env.http_proxy }}
               env.no_proxy=${{ env.no_proxy }}
-            platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
+            platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x
             push: true
             tags: |
               snowdreamtech/java:latest
-              snowdreamtech/java:8.402.06
-              snowdreamtech/java:8.402
-              snowdreamtech/java:8
+              snowdreamtech/java:11.0.24
+              snowdreamtech/java:11.0
+              snowdreamtech/java:11
               ghcr.io/snowdreamtech/java:latest
-              ghcr.io/snowdreamtech/java:8.402.06
-              ghcr.io/snowdreamtech/java:8.402
-              ghcr.io/snowdreamtech/java:8
+              ghcr.io/snowdreamtech/java:11.0.24
+              ghcr.io/snowdreamtech/java:11.0
+              ghcr.io/snowdreamtech/java:11
               snowdreamtech/openjdk:latest
-              snowdreamtech/openjdk:8.402.06
-              snowdreamtech/openjdk:8.402
-              snowdreamtech/openjdk:8
+              snowdreamtech/openjdk:11.0.24
+              snowdreamtech/openjdk:11.0
+              snowdreamtech/openjdk:11
               ghcr.io/snowdreamtech/openjdk:latest
-              ghcr.io/snowdreamtech/openjdk:8.402.06
-              ghcr.io/snowdreamtech/openjdk:8.402
-              ghcr.io/snowdreamtech/openjdk:8            
+              ghcr.io/snowdreamtech/openjdk:11.0.24
+              ghcr.io/snowdreamtech/openjdk:11.0
+              ghcr.io/snowdreamtech/openjdk:11            
