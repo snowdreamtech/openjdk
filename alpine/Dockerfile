@@ -9,11 +9,12 @@ LABEL org.opencontainers.image.authors="Snowdream Tech" \
     org.opencontainers.image.licenses="MIT" \
     org.opencontainers.image.source="https://github.com/snowdreamtech/openjdk" \
     org.opencontainers.image.vendor="Snowdream Tech" \
-    org.opencontainers.image.version="3.21.0" \
+    org.opencontainers.image.version="8.432.06" \
     org.opencontainers.image.url="https://github.com/snowdreamtech/openjdk"
 
-# keep the docker container running
-ENV KEEPALIVE=1
+ENV JAVA_VERSION=8.432.06-r0 \
+    JAVA_HOME=/usr/lib/jvm/default-jvm \
+    PATH=${PATH}:${JAVA_HOME}/bin:${JAVA_HOME}/jre/bin
 
 ARG GID=1000 \
     UID=1000  \
@@ -28,7 +29,7 @@ RUN if [ "${USER}" != "root" ]; then \
     fi
 
 RUN apk add --no-cache \
-    vim
+    openjdk8=${JAVA_VERSION}
 
 # Switch to the user
 USER ${USER}
