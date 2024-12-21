@@ -12,9 +12,7 @@ LABEL org.opencontainers.image.authors="Snowdream Tech" \
     org.opencontainers.image.version="12.8" \
     org.opencontainers.image.url="https://github.com/snowdreamtech/openjdk"
 
-ENV JAVA_VERSION=17.0.13+11-2~deb12u1 \
-    JAVA_HOME=/usr/lib/jvm/java-17-openjdk \
-    PATH=${PATH}:${JAVA_HOME}/bin:${JAVA_HOME}/jre/bin
+ENV JAVA_VERSION=17.0.13+11-2~deb12u1
 
 ARG GID=1000 \
     UID=1000  \
@@ -38,6 +36,10 @@ RUN set -eux \
     && apt-get -qqy update  \
     && apt-get -qqy install --no-install-recommends \ 
     openjdk-17-jdk=${JAVA_VERSION} \
+    && echo '#!/bin/sh' | tee /etc/profile.d/java.sh \
+    && echo "export JAVA_HOME=\$(readlink -f /usr/bin/javac | sed \"s:/bin/javac::\")" | tee -a /etc/profile.d/java.sh \
+    && echo "export PATH=\${PATH}:\${JAVA_HOME}/bin" | tee -a /etc/profile.d/java.sh \
+    && chmod +x /etc/profile.d/java.sh \
     && apt-get -qqy --purge autoremove \
     && apt-get -qqy clean \
     && rm -rf /var/lib/apt/lists/* \
