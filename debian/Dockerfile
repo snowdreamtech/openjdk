@@ -12,8 +12,9 @@ LABEL org.opencontainers.image.authors="Snowdream Tech" \
     org.opencontainers.image.version="12.8" \
     org.opencontainers.image.url="https://github.com/snowdreamtech/openjdk"
 
-# keep the docker container running
-ENV KEEPALIVE=1
+ENV JAVA_VERSION=17.0.13+11-2~deb12u1 \
+    JAVA_HOME=/usr/lib/jvm/java-17-openjdk \
+    PATH=${PATH}:${JAVA_HOME}/bin:${JAVA_HOME}/jre/bin
 
 ARG GID=1000 \
     UID=1000  \
@@ -36,7 +37,7 @@ RUN set -eux \
 RUN set -eux \
     && apt-get -qqy update  \
     && apt-get -qqy install --no-install-recommends \ 
-    vim \
+    openjdk-17-jdk=${JAVA_VERSION} \
     && apt-get -qqy --purge autoremove \
     && apt-get -qqy clean \
     && rm -rf /var/lib/apt/lists/* \
