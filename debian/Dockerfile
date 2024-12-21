@@ -42,6 +42,7 @@ RUN set -eux \
     && chmod +x /etc/profile.d/java.sh \
     && echo 'source /etc/profile' >> /root/.bashrc \
     && echo 'source /etc/profile' >> ${WORKDIR}/.bashrc \
+    && chown ${USER}:${USER} ${WORKDIR}/.bashrc \
     && apt-get -qqy --purge autoremove \
     && apt-get -qqy clean \
     && rm -rf /var/lib/apt/lists/* \

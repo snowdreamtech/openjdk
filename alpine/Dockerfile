@@ -33,7 +33,8 @@ RUN apk add --no-cache \
     && echo "export PATH=\${PATH}:\${JAVA_HOME}/bin" | tee -a /etc/profile.d/java.sh \
     && chmod +x /etc/profile.d/java.sh \
     && echo 'source /etc/profile' >> /root/.ashrc \
-    && echo 'source /etc/profile' >> ${WORKDIR}/.ashrc
+    && echo 'source /etc/profile' >> ${WORKDIR}/.ashrc \
+    && chown ${USER}:${USER} ${WORKDIR}/.ashrc 
 
 # Switch to the user
 USER ${USER}
