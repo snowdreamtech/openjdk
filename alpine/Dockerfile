@@ -13,7 +13,7 @@ LABEL org.opencontainers.image.authors="Snowdream Tech" \
     org.opencontainers.image.url="https://github.com/snowdreamtech/openjdk"
 
 ENV JAVA_VERSION=8.432.06-r0 \
-    JAVA_HOME=/usr/lib/jvm/default-jvm \
+    JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk \
     PATH=${PATH}:${JAVA_HOME}/bin:${JAVA_HOME}/jre/bin
 
 ARG GID=1000 \
