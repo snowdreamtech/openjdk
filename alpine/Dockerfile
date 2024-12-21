@@ -9,10 +9,10 @@ LABEL org.opencontainers.image.authors="Snowdream Tech" \
     org.opencontainers.image.licenses="MIT" \
     org.opencontainers.image.source="https://github.com/snowdreamtech/openjdk" \
     org.opencontainers.image.vendor="Snowdream Tech" \
-    org.opencontainers.image.version="8.432.06" \
+    org.opencontainers.image.version="21.0.5" \
     org.opencontainers.image.url="https://github.com/snowdreamtech/openjdk"
 
-ENV JAVA_VERSION=17.0.13_p11-r0
+ENV JAVA_VERSION=21.0.5_p11-r0
 
 ARG GID=1000 \
     UID=1000  \
@@ -27,7 +27,7 @@ RUN if [ "${USER}" != "root" ]; then \
     fi
 
 RUN apk add --no-cache \
-    openjdk17=${JAVA_VERSION} \
+    openjdk21=${JAVA_VERSION} \
     && echo '#!/bin/sh' | tee /etc/profile.d/java.sh \
     && echo "export JAVA_HOME=\$(readlink -f /usr/bin/javac | sed \"s:/bin/javac::\")" | tee -a /etc/profile.d/java.sh \
     && echo "export PATH=\${PATH}:\${JAVA_HOME}/bin" | tee -a /etc/profile.d/java.sh \
