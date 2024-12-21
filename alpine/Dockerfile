@@ -32,7 +32,8 @@ RUN apk add --no-cache \
     && echo "export JAVA_HOME=\$(readlink -f /usr/bin/javac | sed \"s:/bin/javac::\")" | tee -a /etc/profile.d/java.sh \
     && echo "export PATH=\${PATH}:\${JAVA_HOME}/bin" | tee -a /etc/profile.d/java.sh \
     && chmod +x /etc/profile.d/java.sh \
-    && . /etc/profile 
+    && echo 'source /etc/profile' >> /root/.ashrc \
+    && echo 'source /etc/profile' >> ${WORKDIR}/.ashrc
 
 # Switch to the user
 USER ${USER}

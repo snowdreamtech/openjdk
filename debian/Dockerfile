@@ -40,7 +40,8 @@ RUN set -eux \
     && echo "export JAVA_HOME=\$(readlink -f /usr/bin/javac | sed \"s:/bin/javac::\")" | tee -a /etc/profile.d/java.sh \
     && echo "export PATH=\${PATH}:\${JAVA_HOME}/bin" | tee -a /etc/profile.d/java.sh \
     && chmod +x /etc/profile.d/java.sh \
-    && . /etc/profile \
+    && echo 'source /etc/profile' >> /root/.bashrc \
+    && echo 'source /etc/profile' >> ${WORKDIR}/.bashrc \
     && apt-get -qqy --purge autoremove \
     && apt-get -qqy clean \
     && rm -rf /var/lib/apt/lists/* \
