@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e
 
+# ENV
+JAVA_HOME="$(readlink -f /usr/bin/javac | sed 's:/bin/javac::')"
+export JAVA_HOME
+export PATH="${PATH}":"${JAVA_HOME}"/bin
+
 # exec commands
 if [ -n "$*" ]; then
     sh -c "$*"
