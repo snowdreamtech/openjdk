@@ -9,10 +9,10 @@ LABEL org.opencontainers.image.authors="Snowdream Tech" \
     org.opencontainers.image.licenses="MIT" \
     org.opencontainers.image.source="https://github.com/snowdreamtech/openjdk" \
     org.opencontainers.image.vendor="Snowdream Tech" \
-    org.opencontainers.image.version="17.0.14" \
+    org.opencontainers.image.version="17.0.15" \
     org.opencontainers.image.url="https://github.com/snowdreamtech/openjdk"
 
-ENV JAVA_VERSION=17.0.14+7-1~deb12u1
+ENV JAVA_VERSION=17.0.15+6-1~deb12u1
 
 ARG GID=1000 \
     UID=1000  \
