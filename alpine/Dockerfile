@@ -2,15 +2,15 @@ FROM snowdreamtech/alpine:3.22.2
 
 # OCI annotations to image
 LABEL org.opencontainers.image.authors="Snowdream Tech" \
-    org.opencontainers.image.title="Base Image Based On Alpine" \
-    org.opencontainers.image.description="Docker Images for Base on Alpine. (i386, amd64, arm32v6, arm32v7, arm64, ppc64le,riscv64, s390x)" \
-    org.opencontainers.image.documentation="https://hub.docker.com/r/snowdreamtech/base" \
-    org.opencontainers.image.base.name="snowdreamtech/base:alpine" \
+    org.opencontainers.image.title="OpenJDK Image Based On Alpine" \
+    org.opencontainers.image.description="Docker Images for OpenJDK on Alpine. (i386, amd64, arm32v6, arm32v7, arm64, ppc64le,riscv64, s390x)" \
+    org.opencontainers.image.documentation="https://hub.docker.com/r/snowdreamtech/openjdk" \
+    org.opencontainers.image.base.name="snowdreamtech/openjdk:alpine" \
     org.opencontainers.image.licenses="MIT" \
-    org.opencontainers.image.source="https://github.com/snowdreamtech/base" \
+    org.opencontainers.image.source="https://github.com/snowdreamtech/openjdk" \
     org.opencontainers.image.vendor="Snowdream Tech" \
-    org.opencontainers.image.version="3.22.2" \
-    org.opencontainers.image.url="https://github.com/snowdreamtech/base"
+    org.opencontainers.image.version="21.0.7" \
+    org.opencontainers.image.url="https://github.com/snowdreamtech/openjdk"
     
 # Switch to the user
 USER root
@@ -48,8 +48,17 @@ ENV KEEPALIVE=${KEEPALIVE} \
     USER=${USER} \
     WORKDIR=${WORKDIR} 
 
+ENV JAVA_VERSION=21.0.7_p6-r0
+
 RUN apk add --no-cache \
-    vim
+    openjdk21=${JAVA_VERSION} \
+    && echo '#!/bin/sh' | tee /etc/profile.d/java.sh \
+    && echo "export JAVA_HOME=\$(readlink -f /usr/bin/javac | sed \"s:/bin/javac::\")" | tee -a /etc/profile.d/java.sh \
+    && echo "export PATH=\${PATH}:\${JAVA_HOME}/bin" | tee -a /etc/profile.d/java.sh \
+    && chmod +x /etc/profile.d/java.sh \
+    && echo 'source /etc/profile' >> /root/.ashrc \
+    && echo 'source /etc/profile' >> ${WORKDIR}/.ashrc \
+    && chown ${USER}:${USER} ${WORKDIR}/.ashrc 
 
 # Create a user with PUID and PGID
 RUN if [ "${USER}" != "root" ]; then \

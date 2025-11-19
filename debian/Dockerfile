@@ -2,15 +2,15 @@ FROM snowdreamtech/debian:13.1.0
 
 # OCI annotations to image
 LABEL org.opencontainers.image.authors="Snowdream Tech" \
-    org.opencontainers.image.title="Base Image Based On Debian" \
-    org.opencontainers.image.description="Docker Images for Base on Debian. (i386,amd64,arm32v5,arm32v7,arm64,mips64le,ppc64le,s390x)" \
-    org.opencontainers.image.documentation="https://hub.docker.com/r/snowdreamtech/base" \
-    org.opencontainers.image.base.name="snowdreamtech/base:debian" \
+    org.opencontainers.image.title="OpenJDK Image Based On Debian" \
+    org.opencontainers.image.description="Docker Images for OpenJDK on Debian. (i386,amd64,arm32v5,arm32v7,arm64,mips64le,ppc64le,s390x)" \
+    org.opencontainers.image.documentation="https://hub.docker.com/r/snowdreamtech/openjdk" \
+    org.opencontainers.image.base.name="snowdreamtech/openjdk:debian" \
     org.opencontainers.image.licenses="MIT" \
-    org.opencontainers.image.source="https://github.com/snowdreamtech/base" \
+    org.opencontainers.image.source="https://github.com/snowdreamtech/openjdk" \
     org.opencontainers.image.vendor="Snowdream Tech" \
-    org.opencontainers.image.version="13.1.0" \
-    org.opencontainers.image.url="https://github.com/snowdreamtech/base"
+    org.opencontainers.image.version="17.0.15" \
+    org.opencontainers.image.url="https://github.com/snowdreamtech/openjdk"
 
 # Switch to the user
 USER root
@@ -49,11 +49,20 @@ ENV DEBIAN_FRONTEND=${DEBIAN_FRONTEND} \
     PUID=${PUID}  \
     USER=${USER} \
     WORKDIR=${WORKDIR} 
+    
+ENV JAVA_VERSION=17.0.15+6-1~deb12u1
 
 RUN set -eux \
     && DEBIAN_FRONTEND=noninteractive apt-get -qqy update  \
     && DEBIAN_FRONTEND=noninteractive apt-get -qqy install --no-install-recommends \ 
-    vim \
+    openjdk-17-jdk=${JAVA_VERSION} \
+    && echo '#!/bin/sh' | tee /etc/profile.d/java.sh \
+    && echo "export JAVA_HOME=\$(readlink -f /usr/bin/javac | sed \"s:/bin/javac::\")" | tee -a /etc/profile.d/java.sh \
+    && echo "export PATH=\${PATH}:\${JAVA_HOME}/bin" | tee -a /etc/profile.d/java.sh \
+    && chmod +x /etc/profile.d/java.sh \
+    && echo 'source /etc/profile' >> /root/.bashrc \
+    && echo 'source /etc/profile' >> ${WORKDIR}/.bashrc \
+    && chown ${USER}:${USER} ${WORKDIR}/.bashrc \
     && DEBIAN_FRONTEND=noninteractive apt-get -qqy --purge autoremove \
     && DEBIAN_FRONTEND=noninteractive apt-get -qqy clean \
     && rm -rf /var/lib/apt/lists/* \
