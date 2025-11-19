@@ -55,7 +55,7 @@ ENV JAVA_VERSION=21.0.9+10-1~deb13u1
 RUN set -eux \
     && DEBIAN_FRONTEND=noninteractive apt-get -qqy update  \
     && DEBIAN_FRONTEND=noninteractive apt-get -qqy install --no-install-recommends \ 
-    openjdk-17-jdk=${JAVA_VERSION} \
+    openjdk-21-jdk=${JAVA_VERSION} \
     && echo '#!/bin/sh' | tee /etc/profile.d/java.sh \
     && echo "export JAVA_HOME=\$(readlink -f /usr/bin/javac | sed \"s:/bin/javac::\")" | tee -a /etc/profile.d/java.sh \
     && echo "export PATH=\${PATH}:\${JAVA_HOME}/bin" | tee -a /etc/profile.d/java.sh \

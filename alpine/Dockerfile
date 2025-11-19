@@ -51,7 +51,7 @@ ENV KEEPALIVE=${KEEPALIVE} \
 ENV JAVA_VERSION=21.0.9_p10-r0	
 
 RUN apk add --no-cache \
-    openjdk21=${JAVA_VERSION} \
+    openjdk21-jdk=${JAVA_VERSION} \
     && echo '#!/bin/sh' | tee /etc/profile.d/java.sh \
     && echo "export JAVA_HOME=\$(readlink -f /usr/bin/javac | sed \"s:/bin/javac::\")" | tee -a /etc/profile.d/java.sh \
     && echo "export PATH=\${PATH}:\${JAVA_HOME}/bin" | tee -a /etc/profile.d/java.sh \
