@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.authors="Snowdream Tech" \
     org.opencontainers.image.licenses="MIT" \
     org.opencontainers.image.source="https://github.com/snowdreamtech/openjdk" \
     org.opencontainers.image.vendor="Snowdream Tech" \
-    org.opencontainers.image.version="17.0.15" \
+    org.opencontainers.image.version="21.0.9" \
     org.opencontainers.image.url="https://github.com/snowdreamtech/openjdk"
 
 # Switch to the user
@@ -50,7 +50,7 @@ ENV DEBIAN_FRONTEND=${DEBIAN_FRONTEND} \
     USER=${USER} \
     WORKDIR=${WORKDIR} 
     
-ENV JAVA_VERSION=17.0.15+6-1~deb12u1
+ENV JAVA_VERSION=21.0.9+10-1~deb13u1
 
 RUN set -eux \
     && DEBIAN_FRONTEND=noninteractive apt-get -qqy update  \

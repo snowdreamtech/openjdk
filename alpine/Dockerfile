@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.authors="Snowdream Tech" \
     org.opencontainers.image.licenses="MIT" \
     org.opencontainers.image.source="https://github.com/snowdreamtech/openjdk" \
     org.opencontainers.image.vendor="Snowdream Tech" \
-    org.opencontainers.image.version="21.0.7" \
+    org.opencontainers.image.version="21.0.9" \
     org.opencontainers.image.url="https://github.com/snowdreamtech/openjdk"
     
 # Switch to the user
@@ -48,7 +48,7 @@ ENV KEEPALIVE=${KEEPALIVE} \
     USER=${USER} \
     WORKDIR=${WORKDIR} 
 
-ENV JAVA_VERSION=21.0.7_p6-r0
+ENV JAVA_VERSION=21.0.9_p10-r0	
 
 RUN apk add --no-cache \
     openjdk21=${JAVA_VERSION} \
