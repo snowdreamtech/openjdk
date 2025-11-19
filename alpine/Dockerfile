@@ -48,7 +48,9 @@ ENV KEEPALIVE=${KEEPALIVE} \
     USER=${USER} \
     WORKDIR=${WORKDIR} 
 
-ENV JAVA_VERSION=21.0.9_p10-r0	
+ENV JAVA_VERSION=21.0.9_p10-r0 \
+    JAVA_HOME=/usr/lib/jvm/java-21-openjdk \
+    PATH="/usr/lib/jvm/java-21-openjdk/bin:$PATH"	
 
 RUN apk add --no-cache \
     openjdk21-jdk=${JAVA_VERSION} \
