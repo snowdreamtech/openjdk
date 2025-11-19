@@ -60,8 +60,8 @@ RUN set -eux \
     && echo "export JAVA_HOME=\$(readlink -f /usr/bin/javac | sed \"s:/bin/javac::\")" | tee -a /etc/profile.d/java.sh \
     && echo "export PATH=\${PATH}:\${JAVA_HOME}/bin" | tee -a /etc/profile.d/java.sh \
     && chmod +x /etc/profile.d/java.sh \
-    && echo 'source /etc/profile' >> /root/.bashrc \
-    && echo 'source /etc/profile' >> ${WORKDIR}/.bashrc \
+    && echo '. /etc/profile' >> /root/.bashrc \
+    && echo '. /etc/profile' >> ${WORKDIR}/.bashrc \
     && chown ${USER}:${USER} ${WORKDIR}/.bashrc \
     && DEBIAN_FRONTEND=noninteractive apt-get -qqy --purge autoremove \
     && DEBIAN_FRONTEND=noninteractive apt-get -qqy clean \

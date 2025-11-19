@@ -56,8 +56,8 @@ RUN apk add --no-cache \
     && echo "export JAVA_HOME=\$(readlink -f /usr/bin/javac | sed \"s:/bin/javac::\")" | tee -a /etc/profile.d/java.sh \
     && echo "export PATH=\${PATH}:\${JAVA_HOME}/bin" | tee -a /etc/profile.d/java.sh \
     && chmod +x /etc/profile.d/java.sh \
-    && echo 'source /etc/profile' >> /root/.ashrc \
-    && echo 'source /etc/profile' >> ${WORKDIR}/.ashrc \
+    && echo '. /etc/profile' >> /root/.ashrc \
+    && echo '. /etc/profile' >> ${WORKDIR}/.ashrc \
     && chown ${USER}:${USER} ${WORKDIR}/.ashrc 
 
 # Create a user with PUID and PGID
