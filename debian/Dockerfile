@@ -70,11 +70,11 @@ RUN set -eux \
     && rm -rf /var/tmp/*
 
 # Set default java to JAVA_HOME
-RUN ln -sf /usr/lib/jvm/java-21-openjdk-* /usr/lib/jvm/default-java
+RUN ln -sf /usr/lib/jvm/java-21-openjdk-* /usr/lib/jvm/java-21-openjdk
 
 # Update JAVA_HOME and PATH
-ENV JAVA_HOME=/usr/lib/jvm/default-java \
-    PATH="/usr/lib/jvm/default-java/bin:$PATH"
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk \
+    PATH="/usr/lib/jvm/java-21-openjdk/bin:$PATH"
 
 # Create a user with PUID and PGID
 RUN if [ "${USER}" != "root" ]; then \
