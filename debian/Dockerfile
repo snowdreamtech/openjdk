@@ -69,6 +69,13 @@ RUN set -eux \
     && rm -rf /tmp/* \
     && rm -rf /var/tmp/*
 
+# Set default java to JAVA_HOME
+RUN ln -sf /usr/lib/jvm/java-21-openjdk-* /usr/lib/jvm/default-java
+
+# Update JAVA_HOME and PATH
+ENV JAVA_HOME=/usr/lib/jvm/default-java \
+    PATH="/usr/lib/jvm/default-java/bin:$PATH"
+
 # Create a user with PUID and PGID
 RUN if [ "${USER}" != "root" ]; then \
     addgroup --gid ${PGID} ${USER}; \
