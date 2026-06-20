@@ -1,5 +1,5 @@
-# Base Image (Debian Variant)
-# Extends snowdreamtech/debian with additional tooling and configuration.
+# OpenJDK Image (Debian Variant)
+# Extends snowdreamtech/debian with OpenJDK runtime and tools.
 
 FROM snowdreamtech/debian:13.5.0
 
@@ -7,9 +7,9 @@ FROM snowdreamtech/debian:13.5.0
 ARG BUILDTIME \
     VERSION \
     REVISION \
-    DEBIAN_FRONTEND=noninteractive \
     KEEPALIVE=0 \
     CAP_NET_BIND_SERVICE=0 \
+    DEBIAN_FRONTEND=noninteractive \
     LANG=C.UTF-8 \
     UMASK=022 \
     DEBUG=false \
@@ -17,26 +17,30 @@ ARG BUILDTIME \
     PGID=0 \
     PUID=0 \
     USER=root \
-    WORKDIR=/root
+    WORKDIR=/root \
+    OPENJDK_VERSION=21.0.11+10-1~deb13u2
 
 # Standard OCI Metadata (https://github.com/opencontainers/image-spec)
 LABEL org.opencontainers.image.authors="Snowdream Tech" \
-    org.opencontainers.image.title="Base Image Based On Debian" \
-    org.opencontainers.image.description="Docker Images for Base on Debian. (i386, amd64, arm32v5, arm32v7, arm64, mips64le, ppc64le, s390x)" \
-    org.opencontainers.image.documentation="https://hub.docker.com/r/snowdreamtech/base" \
-    org.opencontainers.image.base.name="snowdreamtech/base:debian" \
+    org.opencontainers.image.title="OpenJDK Image Based On Debian" \
+    org.opencontainers.image.description="Docker Images for OpenJDK on Debian. (i386, amd64, arm32v5, arm32v7, arm64, mips64le, ppc64le, s390x)" \
+    org.opencontainers.image.documentation="https://hub.docker.com/r/snowdreamtech/openjdk" \
+    org.opencontainers.image.base.name="snowdreamtech/debian:13.5.0" \
     org.opencontainers.image.licenses="MIT" \
-    org.opencontainers.image.source="https://github.com/snowdreamtech/base" \
+    org.opencontainers.image.source="https://github.com/snowdreamtech/openjdk" \
     org.opencontainers.image.vendor="Snowdream Tech" \
-    org.opencontainers.image.version="${VERSION:-13.5.0}" \
     org.opencontainers.image.created="${BUILDTIME}" \
     org.opencontainers.image.revision="${REVISION}" \
-    org.opencontainers.image.url="https://github.com/snowdreamtech/base"
+    org.opencontainers.image.url="https://github.com/snowdreamtech/openjdk"
+
+# x-release-please-start-version
+LABEL org.opencontainers.image.version="${VERSION:-21.0.11}"
+# x-release-please-end
 
 # Runtime Environment Configuration
-ENV DEBIAN_FRONTEND=${DEBIAN_FRONTEND} \
-    KEEPALIVE=${KEEPALIVE} \
+ENV KEEPALIVE=${KEEPALIVE} \
     CAP_NET_BIND_SERVICE=${CAP_NET_BIND_SERVICE} \
+    DEBIAN_FRONTEND=${DEBIAN_FRONTEND} \
     LANG=${LANG} \
     UMASK=${UMASK} \
     DEBUG=${DEBUG} \
@@ -44,15 +48,15 @@ ENV DEBIAN_FRONTEND=${DEBIAN_FRONTEND} \
     PGID=${PGID} \
     PUID=${PUID} \
     USER=${USER} \
-    WORKDIR=${WORKDIR}
+    WORKDIR=${WORKDIR} \
+    OPENJDK_VERSION=${OPENJDK_VERSION}
 
-# Additional tooling and configuration for Base image
+# Additional tooling and configuration for OpenJDK image
 RUN set -eux \
-    && DEBIAN_FRONTEND=noninteractive apt-get -qqy update \
-    && DEBIAN_FRONTEND=noninteractive apt-get -qqy install --no-install-recommends \
-    vim \
-    && DEBIAN_FRONTEND=noninteractive apt-get -qqy --purge autoremove \
-    && DEBIAN_FRONTEND=noninteractive apt-get -qqy clean \
+    && apt-get -qqy update \
+    && apt-get -qqy install --no-install-recommends \
+    openjdk-21-jdk=${OPENJDK_VERSION} \
+    && apt-get -qqy clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/* \
     && rm -rf /var/tmp/*

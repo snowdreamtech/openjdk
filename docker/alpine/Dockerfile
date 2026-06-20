@@ -1,5 +1,5 @@
-# Base Image (Alpine Variant)
-# Extends snowdreamtech/alpine with additional tooling and configuration.
+# OpenJDK Image (Alpine Variant)
+# Extends snowdreamtech/alpine with OpenJDK runtime and tools.
 
 FROM snowdreamtech/alpine:3.24.0
 
@@ -16,21 +16,25 @@ ARG BUILDTIME \
     PGID=0 \
     PUID=0 \
     USER=root \
-    WORKDIR=/root
+    WORKDIR=/root \
+    OPENJDK_VERSION=21.0.11_p10-r0
 
 # Standard OCI Metadata (https://github.com/opencontainers/image-spec)
 LABEL org.opencontainers.image.authors="Snowdream Tech" \
-    org.opencontainers.image.title="Base Image Based On Alpine" \
-    org.opencontainers.image.description="Docker Images for Base on Alpine. (i386, amd64, arm32v6, arm32v7, arm64, ppc64le, riscv64, s390x)" \
-    org.opencontainers.image.documentation="https://hub.docker.com/r/snowdreamtech/base" \
-    org.opencontainers.image.base.name="snowdreamtech/base:alpine" \
+    org.opencontainers.image.title="OpenJDK Image Based On Alpine" \
+    org.opencontainers.image.description="Docker Images for OpenJDK on Alpine. (i386, amd64, arm32v6, arm32v7, arm64, ppc64le, riscv64, s390x)" \
+    org.opencontainers.image.documentation="https://hub.docker.com/r/snowdreamtech/openjdk" \
+    org.opencontainers.image.base.name="snowdreamtech/alpine:3.24.0" \
     org.opencontainers.image.licenses="MIT" \
-    org.opencontainers.image.source="https://github.com/snowdreamtech/base" \
+    org.opencontainers.image.source="https://github.com/snowdreamtech/openjdk" \
     org.opencontainers.image.vendor="Snowdream Tech" \
-    org.opencontainers.image.version="${VERSION:-3.24.0}" \
     org.opencontainers.image.created="${BUILDTIME}" \
     org.opencontainers.image.revision="${REVISION}" \
-    org.opencontainers.image.url="https://github.com/snowdreamtech/base"
+    org.opencontainers.image.url="https://github.com/snowdreamtech/openjdk"
+
+# x-release-please-start-version
+LABEL org.opencontainers.image.version="${VERSION:-21.0.11}"
+# x-release-please-end
 
 # Runtime Environment Configuration
 ENV KEEPALIVE=${KEEPALIVE} \
@@ -42,12 +46,13 @@ ENV KEEPALIVE=${KEEPALIVE} \
     PGID=${PGID} \
     PUID=${PUID} \
     USER=${USER} \
-    WORKDIR=${WORKDIR}
+    WORKDIR=${WORKDIR} \
+    OPENJDK_VERSION=${OPENJDK_VERSION}
 
-# Additional tooling and configuration for Base image
+# Additional tooling and configuration for OpenJDK image
 RUN apk update \
     && apk add --no-cache \
-    vim
+    openjdk21=${OPENJDK_VERSION}
 
 # Container Orchestration Files
 COPY entrypoint.d /usr/local/bin/entrypoint.d
