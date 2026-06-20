@@ -44,6 +44,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * **release:** deduplicate CHANGELOG headers ([5e1a539](https://github.com/snowdreamtech/openjdk/commit/5e1a5390319933b48d20ad993714587d826c0aa7))
 * **release:** implement automatic changelog deduplication step ([282c220](https://github.com/snowdreamtech/openjdk/commit/282c22081e1ad7a1a010a7f297d20bc7c9b416a7))
 
-## [21.0.11] - 2026-06-20
-### Added
-- Initial OpenJDK 21 Rocky image release
