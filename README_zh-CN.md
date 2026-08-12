@@ -43,9 +43,9 @@ docker run -d \
   snowdreamtech/openjdk:debian
 ```
 
-**支持的架构**：i386、amd64、arm32v5、arm32v7、arm64、mips64le、ppc64le、s390x
+**支持的架构**：amd64、arm32v7、arm64、ppc64le、riscv64、s390x
 
-**基础镜像**：`snowdreamtech/debian:13.5.0`
+**基础镜像**：`snowdreamtech/debian:13.6.0`
 
 ### Alpine
 
@@ -59,9 +59,9 @@ docker run -d \
   snowdreamtech/openjdk:alpine
 ```
 
-**支持的架构**：i386、amd64、arm32v6、arm32v7、arm64、ppc64le、riscv64、s390x
+**支持的架构**：amd64、arm64、ppc64le、riscv64、s390x
 
-**基础镜像**：`snowdreamtech/alpine:3.24.0`
+**基础镜像**：`snowdreamtech/alpine:3.24.1`
 
 ### Rocky
 
@@ -75,7 +75,7 @@ docker run -d \
   snowdreamtech/openjdk:rocky
 ```
 
-**支持的架构**：i386、amd64、arm32v5、arm32v7、arm64、mips64le、ppc64le、s390x
+**支持的架构**：amd64、arm64、ppc64le、s390x
 
 **基础镜像**：`snowdreamtech/rocky:10.2.0`
 
@@ -104,21 +104,21 @@ docker buildx create --use --name build --node build --driver-opt network=host
 
 # 为多个架构构建 Debian
 docker buildx build \
-  --platform=linux/386,linux/amd64,linux/arm/v5,linux/arm/v7,linux/arm64,linux/mips64le,linux/ppc64le,linux/s390x \
+  --platform=linux/amd64,linux/arm/v7,linux/arm64,linux/ppc64le,linux/riscv64,linux/s390x \
   -t snowdreamtech/openjdk:debian \
   ./docker/debian/ \
   --push
 
 # 为多个架构构建 Alpine
 docker buildx build \
-  --platform=linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/riscv64,linux/s390x \
+  --platform=linux/amd64,linux/arm64,linux/ppc64le,linux/riscv64,linux/s390x \
   -t snowdreamtech/openjdk:alpine \
   ./docker/alpine/ \
   --push
 
 # 为多个架构构建 Rocky
 docker buildx build \
-  --platform=linux/386,linux/amd64,linux/arm/v5,linux/arm/v7,linux/arm64,linux/mips64le,linux/ppc64le,linux/s390x \
+  --platform=linux/amd64,linux/arm64,linux/ppc64le,linux/s390x \
   -t snowdreamtech/openjdk:rocky \
   ./docker/rocky/ \
   --push
@@ -209,13 +209,13 @@ services:
 
 示例：
 
-- `snowdreamtech/openjdk:21.0.11-debian`
-- `snowdreamtech/openjdk:21.0.11-alpine`
-- `snowdreamtech/openjdk:21.0.11-rocky`
+- `snowdreamtech/openjdk:21.0.12-debian`
+- `snowdreamtech/openjdk:21.0.12-alpine`
+- `snowdreamtech/openjdk:21.0.12-rocky`
 
 此格式允许：
 
-- **完整版本固定**：`21.0.11-debian`（精确版本）
+- **完整版本固定**：`21.0.12-debian`（精确版本）
 - **变体最新标签**：`latest-debian`（跟踪 Debian 最新版本）
 - **全局最新标签**：`latest`（跟踪最新版本，默认指向 Debian）
 
@@ -225,9 +225,9 @@ services:
 
 | 变体 | 架构 |
 |---------|---------------|
-| **Debian** | i386、amd64、arm32v5、arm32v7、arm64、mips64le、ppc64le、s390x |
-| **Alpine** | i386、amd64、arm32v6、arm32v7、arm64、ppc64le、riscv64、s390x |
-| **Rocky** | i386、amd64、arm32v5、arm32v7、arm64、mips64le、ppc64le、s390x |
+| **Debian** | amd64、arm32v7、arm64、ppc64le、riscv64、s390x |
+| **Alpine** | amd64、arm64、ppc64le、riscv64、s390x |
+| **Rocky** | amd64、arm64、ppc64le、s390x |
 
 Docker 在拉取镜像时会自动为您的平台选择适当的架构。
 

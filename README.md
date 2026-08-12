@@ -43,9 +43,9 @@ docker run -d \
   snowdreamtech/openjdk:debian
 ```
 
-**Supported Architectures**: i386, amd64, arm32v5, arm32v7, arm64, mips64le, ppc64le, s390x
+**Supported Architectures**: amd64, arm32v7, arm64, ppc64le, riscv64, s390x
 
-**OpenJDK Image**: `snowdreamtech/debian:13.5.0`
+**Base Image**: `snowdreamtech/debian:13.6.0`
 
 ### Alpine
 
@@ -59,9 +59,9 @@ docker run -d \
   snowdreamtech/openjdk:alpine
 ```
 
-**Supported Architectures**: i386, amd64, arm32v6, arm32v7, arm64, ppc64le, riscv64, s390x
+**Supported Architectures**: amd64, arm64, ppc64le, riscv64, s390x
 
-**OpenJDK Image**: `snowdreamtech/alpine:3.24.0`
+**Base Image**: `snowdreamtech/alpine:3.24.1`
 
 ### Rocky
 
@@ -75,9 +75,9 @@ docker run -d \
   snowdreamtech/openjdk:rocky
 ```
 
-**Supported Architectures**: i386, amd64, arm32v5, arm32v7, arm64, mips64le, ppc64le, s390x
+**Supported Architectures**: amd64, arm64, ppc64le, s390x
 
-**OpenJDK Image**: `snowdreamtech/rocky:10.2.0`
+**Base Image**: `snowdreamtech/rocky:10.2.0`
 
 ## Build Instructions
 
@@ -104,21 +104,21 @@ docker buildx create --use --name build --node build --driver-opt network=host
 
 # Build Debian for multiple architectures
 docker buildx build \
-  --platform=linux/386,linux/amd64,linux/arm/v5,linux/arm/v7,linux/arm64,linux/mips64le,linux/ppc64le,linux/s390x \
+  --platform=linux/amd64,linux/arm/v7,linux/arm64,linux/ppc64le,linux/riscv64,linux/s390x \
   -t snowdreamtech/openjdk:debian \
   ./docker/debian/ \
   --push
 
 # Build Alpine for multiple architectures
 docker buildx build \
-  --platform=linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/riscv64,linux/s390x \
+  --platform=linux/amd64,linux/arm64,linux/ppc64le,linux/riscv64,linux/s390x \
   -t snowdreamtech/openjdk:alpine \
   ./docker/alpine/ \
   --push
 
 # Build Rocky for multiple architectures
 docker buildx build \
-  --platform=linux/386,linux/amd64,linux/arm/v5,linux/arm/v7,linux/arm64,linux/mips64le,linux/ppc64le,linux/s390x \
+  --platform=linux/amd64,linux/arm64,linux/ppc64le,linux/s390x \
   -t snowdreamtech/openjdk:rocky \
   ./docker/rocky/ \
   --push
@@ -209,13 +209,13 @@ Images follow semantic versioning with the format: `{major}.{minor}.{patch}-{var
 
 Examples:
 
-- `snowdreamtech/openjdk:21.0.11-debian`
-- `snowdreamtech/openjdk:21.0.11-alpine`
-- `snowdreamtech/openjdk:21.0.11-rocky`
+- `snowdreamtech/openjdk:21.0.12-debian`
+- `snowdreamtech/openjdk:21.0.12-alpine`
+- `snowdreamtech/openjdk:21.0.12-rocky`
 
 This format allows:
 
-- **Full version pinning**: `21.0.11-debian` (exact version)
+- **Full version pinning**: `21.0.12-debian` (exact version)
 - **Variant latest tag**: `latest-debian` (tracks most recent release for Debian)
 - **Global latest tag**: `latest` (tracks most recent release, defaults to Debian)
 
@@ -225,9 +225,9 @@ Each distribution variant supports multiple CPU architectures for deployment acr
 
 | Variant | Architectures |
 |---------|---------------|
-| **Debian** | i386, amd64, arm32v5, arm32v7, arm64, mips64le, ppc64le, s390x |
-| **Alpine** | i386, amd64, arm32v6, arm32v7, arm64, ppc64le, riscv64, s390x |
-| **Rocky** | i386, amd64, arm32v5, arm32v7, arm64, mips64le, ppc64le, s390x |
+| **Debian** | amd64, arm32v7, arm64, ppc64le, riscv64, s390x |
+| **Alpine** | amd64, arm64, ppc64le, riscv64, s390x |
+| **Rocky** | amd64, arm64, ppc64le, s390x |
 
 Docker automatically selects the appropriate architecture for your platform when pulling images.
 
