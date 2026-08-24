@@ -18,7 +18,7 @@ ARG BUILDTIME \
     PUID=0 \
     USER=root \
     WORKDIR=/root \
-    OPENJDK_VERSION=21.0.12+8-1~deb13u1
+    OPENJDK_VERSION=21.0.12.1+1-1~deb13u1
 
 # Standard OCI Metadata (https://github.com/opencontainers/image-spec)
 LABEL org.opencontainers.image.authors="Snowdream Tech" \
