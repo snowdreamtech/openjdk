@@ -266,6 +266,8 @@ jobs:
           images: |
             name=ghcr.io/snowdreamtech/openjdk,enable=true
             name=snowdreamtech/openjdk,enable=true
+            name=ghcr.io/snowdreamtech/java,enable=true
+            name=snowdreamtech/java,enable=true
           flavor: |
             latest=false
             prefix=

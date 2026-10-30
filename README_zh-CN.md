@@ -27,6 +27,9 @@ OpenJDK Docker 镜像，提供标准化的容器基础，具有灵活的入口�
 
 ## 快速开始
 
+> [!NOTE]
+> 为保持向后兼容性，镜像亦同步发布于 `java` 别名下（`snowdreamtech/java` 与 `ghcr.io/snowdreamtech/java`）。
+
 ```bash
 # 拉取并运行默认的 Debian 变体
 docker pull snowdreamtech/openjdk:debian

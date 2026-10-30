@@ -27,6 +27,9 @@ These OpenJDK Docker images serve as a foundational starting point for running J
 
 ## Quick Start
 
+> [!NOTE]
+> For backward compatibility, images are also published under the `java` alias (`snowdreamtech/java` and `ghcr.io/snowdreamtech/java`).
+
 ```bash
 # Pull and run the default Debian variant
 docker pull snowdreamtech/openjdk:debian

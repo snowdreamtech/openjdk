@@ -11,12 +11,16 @@ Where `TAG` follows these patterns:
 - **Variant-specific tags**: `TAG-variant` (e.g., `nightly-alpine`, `21.0.12-alpine`)
 - **Default tags** (Debian only): `TAG` (e.g., `nightly`, `latest`, `21.0.12`)
 
-## Supported Registries
+## Supported Registries & Aliases
 
-All tags are pushed to two registries:
+All tags are pushed to two registries under both `openjdk` and `java` (compatibility alias):
 
-- **DockerHub**: `snowdreamtech/openjdk:TAG`
-- **GitHub Container Registry**: `ghcr.io/snowdreamtech/openjdk:TAG`
+- **DockerHub**:
+  - Primary: `snowdreamtech/openjdk:TAG`
+  - Alias: `snowdreamtech/java:TAG`
+- **GitHub Container Registry**:
+  - Primary: `ghcr.io/snowdreamtech/openjdk:TAG`
+  - Alias: `ghcr.io/snowdreamtech/java:TAG`
 
 ## Tag Scenarios
 
