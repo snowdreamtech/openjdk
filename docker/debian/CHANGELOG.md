@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [21.0.12](https://github.com/snowdreamtech/openjdk/compare/debian-v21.0.12...debian-v21.0.12) (2026-10-30)
+
+
+### 🚀 Features
+
+* align with base dev template and retain openjdk docker configs ([5b2a426](https://github.com/snowdreamtech/openjdk/commit/5b2a4263f8020c9c320d2ba43785295b90cb0742))
+* initial release of snowdreamtech base docker images powered by unirtm ([25f55c8](https://github.com/snowdreamtech/openjdk/commit/25f55c84e8fba977d226739e9871d61e1428fdeb))
+
+
+### ♻️ Miscellaneous Chores
+
+* release main ([a2cafdc](https://github.com/snowdreamtech/openjdk/commit/a2cafdc012ed85559e0239e6333af767a878eff8))
+* **release:** deduplicate CHANGELOG headers ([ec1c2ef](https://github.com/snowdreamtech/openjdk/commit/ec1c2ef80d3e6af152487494cd1727eaf502214b))
+
 ## [21.0.12](https://github.com/snowdreamtech/openjdk/compare/debian-v21.0.11...debian-v21.0.12) (2026-08-12)
 
 ### 🐛 Bug Fixes
