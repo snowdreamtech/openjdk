@@ -19,12 +19,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * release main ([a2cafdc](https://github.com/snowdreamtech/openjdk/commit/a2cafdc012ed85559e0239e6333af767a878eff8))
 * **release:** deduplicate CHANGELOG headers ([ec1c2ef](https://github.com/snowdreamtech/openjdk/commit/ec1c2ef80d3e6af152487494cd1727eaf502214b))
 
-## [21.0.13](https://github.com/snowdreamtech/openjdk/compare/rocky-v21.0.12...rocky-v21.0.13) (2026-10-31)
-
-### 🚀 Features
-
-- align with base dev template and upgrade openjdk to 21.0.13 for rocky
-
 ## [21.0.12](https://github.com/snowdreamtech/openjdk/compare/rocky-v21.0.11...rocky-v21.0.12) (2026-08-12)
 
 ### 🐛 Bug Fixes
